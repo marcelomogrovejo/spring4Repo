@@ -16,5 +16,5 @@ public class WebAppInitializer implements WebApplicationInitializer {
         Dynamic dynamic = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));  
         dynamic.addMapping("/");  
         dynamic.setLoadOnStartup(1);  
-   }  
+   }
 }
