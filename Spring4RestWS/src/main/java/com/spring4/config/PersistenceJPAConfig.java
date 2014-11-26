@@ -1,4 +1,4 @@
-package com.concretepage.config;
+package com.spring4.config;
 
 import java.util.Properties;
 
@@ -58,7 +58,7 @@ public class PersistenceJPAConfig {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(restDataSource());
 		factoryBean
-				.setPackagesToScan(new String[] { "com.concretepage.entity" });
+				.setPackagesToScan(new String[] { "com.spring4.entity" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter() {
 
