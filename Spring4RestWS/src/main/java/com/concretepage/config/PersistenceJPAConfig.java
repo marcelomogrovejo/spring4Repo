@@ -21,37 +21,44 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
 @Configuration
 @EnableTransactionManagement
-@PropertySource(name ="prop" ,value="classpath:/persistence.development.properties")
+@PropertySource(name = "prop", value = "classpath:/persistence.development.properties")
 public class PersistenceJPAConfig {
 
-	private static final Logger logger = Logger.getLogger(PersistenceJPAConfig.class);
-	
+	private static final Logger logger = Logger
+			.getLogger(PersistenceJPAConfig.class);
+
 	private static final String GET_PROPFILE = "${";
 	private static final String GET_PROP_START = "";
-	private static final String GET_PROP_END = "}";	
+	private static final String GET_PROP_END = "}";
 	private static final String MAIL_PROPERTIES_NAME = "";
-	
-	private static final String BASE_URL = GET_PROPFILE + MAIL_PROPERTIES_NAME + GET_PROP_START + "base.url" + GET_PROP_END;
-	private static final String BASE_USER = GET_PROPFILE + MAIL_PROPERTIES_NAME + GET_PROP_START + "base.usuario" + GET_PROP_END;
-	private static final String BASE_PASS = GET_PROPFILE + MAIL_PROPERTIES_NAME + GET_PROP_START + "base.clave" + GET_PROP_END;
-	
-	@Value(BASE_URL) private String baseUrl;
-	@Value(BASE_USER) private String baseUsuario;
-	@Value(BASE_PASS) private String baseClave;
 
+	private static final String BASE_URL = GET_PROPFILE + MAIL_PROPERTIES_NAME
+			+ GET_PROP_START + "base.url" + GET_PROP_END;
+	private static final String BASE_USER = GET_PROPFILE + MAIL_PROPERTIES_NAME
+			+ GET_PROP_START + "base.usuario" + GET_PROP_END;
+	private static final String BASE_PASS = GET_PROPFILE + MAIL_PROPERTIES_NAME
+			+ GET_PROP_START + "base.clave" + GET_PROP_END;
 
-	 @Bean
-     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
-     }
+	@Value(BASE_URL)
+	private String baseUrl;
+	@Value(BASE_USER)
+	private String baseUsuario;
+	@Value(BASE_PASS)
+	private String baseClave;
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(restDataSource());
-		factoryBean.setPackagesToScan(new String[] { "com.concretepage.entity" });
+		factoryBean
+				.setPackagesToScan(new String[] { "com.concretepage.entity" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter() {
 
@@ -75,12 +82,12 @@ public class PersistenceJPAConfig {
 		dataSource.setUrl(baseUrl);
 		dataSource.setUsername(baseUsuario);
 		dataSource.setPassword(baseClave);
-		
+
 		logger.info("Info - Conexion de base de datos");
 		logger.info("url: " + baseUrl);
 		logger.info("usuario: " + baseUsuario);
 		logger.info("clave: " + baseClave);
-		
+
 		return dataSource;
 	}
 
@@ -98,11 +105,10 @@ public class PersistenceJPAConfig {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
-	@Bean 
-	public HibernateExceptionTranslator hibernateExceptionTranslator(){ 
-		return new HibernateExceptionTranslator(); 
+	@Bean
+	public HibernateExceptionTranslator hibernateExceptionTranslator() {
+		return new HibernateExceptionTranslator();
 	}
-	 
 
 	final Properties additionalProperties() {
 		return new Properties() {
@@ -111,7 +117,7 @@ public class PersistenceJPAConfig {
 			{
 				// use this to inject additional properties in the EntityManager
 				setProperty("hibernate.hbm2ddl.auto", "update");
-				setProperty("hibernate.show_sql","true");
+				setProperty("hibernate.show_sql", "true");
 			}
 		};
 	}

@@ -24,11 +24,16 @@ public interface IPersonDAO {
 	 * @param person
 	 * @return
 	 */
-	Person addPerson(Person person);
+	Person saveOrUpdatePerson(Person person);
+	
+	/**
+	 * Removes a person
+	 * @param id
+	 * @return
+	 */
+	void removePerson(Person person);
 	
 	/* TODO:
-	 * 		1. deltePerson
-	 * 		2. get a paginated list of persons
+	 * 		1. get a paginated list of persons
 	 */
-	
 }

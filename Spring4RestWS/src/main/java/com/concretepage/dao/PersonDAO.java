@@ -2,29 +2,52 @@ package com.concretepage.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.concretepage.entity.Person;
 
-@Component
+@Repository
 public class PersonDAO implements IPersonDAO {
 
+	@PersistenceContext
+	EntityManager entityManager;
+
+	@Override
+	@Transactional
 	public List<Person> listPersons() {
-		
-		List<Person> persons = session.createQuery("form Person");
+		@SuppressWarnings("unchecked")
+		List<Person> persons = entityManager.createQuery("from Person").getResultList();
 		return persons;
 	}
 
 	@Override
+	@Transactional
 	public Person getPerson(Long id) {
-		Person p = session.createQuery(Person.class, id);
+
+		Person p = entityManager.find(Person.class, id);
 		return p;
 	}
 
+	//TODO
 	@Override
-	public Person addPerson(Person person) {
-		Person p = session.saveOrUpdate(person);
-		return p;
+	@Transactional
+	public Person saveOrUpdatePerson(Person person) {
+		entityManager.getTransaction().begin();
+		entityManager.persist(person);
+		entityManager.getTransaction().commit();
+		return person;
+	}
+
+	@Override
+	@Transactional
+	public void removePerson(Person person) {
+		entityManager.getTransaction().begin();
+		entityManager.remove(person);
+		entityManager.getTransaction().commit();
 	}
 	
 }

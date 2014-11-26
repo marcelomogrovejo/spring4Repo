@@ -7,7 +7,7 @@ import com.concretepage.entity.Person;
 public interface IPersonService {
 	
 	/**
-	 * Gets a person
+	 * Gets a person by id
 	 * @param id
 	 * @return
 	 */
@@ -20,15 +20,19 @@ public interface IPersonService {
 	List<Person> getPersons();
 	
 	/**
-	 * Save a person
+	 * Saves a person
 	 * @param person
 	 * @return
 	 */
 	Person saveOrUpdate(Person person);
-	
-	/* TODO:
-	 * 		1. deltePerson
-	 * 		2. list persons paginated
-	 */
 
+	/**
+	 * Removes a person by id
+	 * @param id
+	 */
+	void removePerson(Person p);
+
+	/* TODO:
+	 * 		1. list persons paginated
+	 */
 }
