@@ -1,8 +1,8 @@
-package com.concretepage.service;
+package com.spring4.service;
 
 import java.util.List;
 
-import com.concretepage.entity.Person;
+import com.spring4.entity.Person;
 
 public interface IPersonService {
 	

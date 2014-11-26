@@ -1,12 +1,12 @@
-package com.concretepage.service;
+package com.spring4.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.concretepage.dao.IPersonDAO;
-import com.concretepage.entity.Person;
+import com.spring4.dao.IPersonDAO;
+import com.spring4.entity.Person;
 
 @Service
 public class PersonService implements IPersonService {

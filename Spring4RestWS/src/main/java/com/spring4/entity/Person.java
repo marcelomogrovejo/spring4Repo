@@ -1,4 +1,4 @@
-package com.concretepage.entity;
+package com.spring4.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name = "PERSON")
@@ -23,7 +21,7 @@ public class Person implements Serializable {
 	private Long id;
 
 	@Column(name = "FIRST_NAME")
-	private String firstNombre;
+	private String firstName;
 
 	@Column(name = "LAST_NAME")
 	private String lastName;
@@ -39,12 +37,12 @@ public class Person implements Serializable {
 		this.id = id;
 	}
 
-	public String getFirstNombre() {
-		return firstNombre;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirstNombre(String firstNombre) {
-		this.firstNombre = firstNombre;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {

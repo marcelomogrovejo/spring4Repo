@@ -1,8 +1,8 @@
-package com.concretepage.dao;
+package com.spring4.dao;
 
 import java.util.List;
 
-import com.concretepage.entity.Person;
+import com.spring4.entity.Person;
 
 public interface IPersonDAO {
 	

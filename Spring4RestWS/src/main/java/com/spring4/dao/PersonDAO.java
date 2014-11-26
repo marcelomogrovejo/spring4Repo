@@ -1,4 +1,4 @@
-package com.concretepage.dao;
+package com.spring4.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.concretepage.entity.Person;
+import com.spring4.entity.Person;
 
 @Repository
 public class PersonDAO implements IPersonDAO {
@@ -27,7 +27,6 @@ public class PersonDAO implements IPersonDAO {
 	@Override
 	@Transactional
 	public Person getPerson(Long id) {
-
 		Person p = entityManager.find(Person.class, id);
 		return p;
 	}

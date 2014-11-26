@@ -1,4 +1,4 @@
-package com.concretepage.controller;
+package com.spring4.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.concretepage.entity.Person;
-import com.concretepage.service.IPersonService;
+import com.spring4.entity.Person;
+import com.spring4.service.IPersonService;
 
 @RestController
 @RequestMapping("/data/person")
