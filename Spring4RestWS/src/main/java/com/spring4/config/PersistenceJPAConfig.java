@@ -8,8 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateExceptionTranslator;
@@ -23,7 +21,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource(name = "prop", value = "classpath:/persistence.development.properties")
 public class PersistenceJPAConfig {
 
 	private static final Logger logger = Logger
@@ -47,11 +44,6 @@ public class PersistenceJPAConfig {
 	private String baseUsuario;
 	@Value(BASE_PASS)
 	private String baseClave;
-
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
