@@ -5,8 +5,7 @@
 angular.module("myAngular.services", ['ngResource'])
 
 	.factory("PersonFactory", function ($resource) {
-		//FIXME: figure out how to pass parameters
-		return $resource("http\://localhost\:8080/Spring4/data/person/1", {}, {
+		return $resource("http\://localhost\:8080/Spring4/data/person/:id", {}, {
 			query: {
 				method: 'GET',
 				params: {},
@@ -16,12 +15,11 @@ angular.module("myAngular.services", ['ngResource'])
 	})
 	
 	.factory("PersonsFactory", function ($resource) {
-		//FIXME: figure out how to retrieve and manage a record list
-		return $resource("http\://localhost\:8080/Spring4/data/person/2", {}, {
+		return $resource("http\://localhost\:8080/Spring4/data/person", {}, {
 			query: {
 				method: 'GET',
 				param: {},
-				isArray: false
+				isArray: true
 			}
 		});
 	});

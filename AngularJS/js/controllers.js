@@ -18,17 +18,17 @@ angular.module("myAngular.controllers", [])
 		$scope.title = 'Home Page';
 	}])
 	
+	//FIXME: figure out how to pass the customized id
 	.controller("PersonDetailController", ['$scope', "PersonFactory", function ($scope, PersonFactory) {
-	    PersonFactory.get({}, function (personFactory) {
-	        $scope.firstname = personFactory.firstName;
-	        $scope.lastname = personFactory.lastName;
+	    PersonFactory.get({ id: 1 }, function (data) {
+	        $scope.firstname = data.firstName;
+	        $scope.lastname = data.lastName;
 	    });
 	}])
 	
 	.controller("PersonListController", ['$scope', "PersonsFactory", function ($scope, PersonsFactory) {
-		PersonsFactory.get({}, function(personsFactory) {
-			$scope.firstname = personsFactory.firstName;
-			$scope.lastname = personsFactory.lastName;
+		PersonsFactory.get({}, function(data) {
+			$scope.persons = data;
 		})
 	}])
 	
