@@ -27,7 +27,7 @@ angular.module("myAngular.controllers", [])
 	}])
 	
 	.controller("PersonListController", ['$scope', "PersonsFactory", function ($scope, PersonsFactory) {
-		PersonsFactory.get({}, function(data) {
+		PersonsFactory.query({}, function(data) {
 			$scope.persons = data;
 		})
 	}])
