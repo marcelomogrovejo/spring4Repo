@@ -27,7 +27,7 @@ public class PersonController {
 		return p;
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<Person> getPersons() {
 		List<Person> persons = personService.getPersons();
 		return persons;

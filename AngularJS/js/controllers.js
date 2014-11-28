@@ -14,10 +14,25 @@ angular.module("myAngular.controllers", [])
 	    });
 	})
 
+	.controller("HomeController", ['$scope', function ($scope) {
+		$scope.title = 'Home Page';
+	}])
+	
+	//FIXME: figure out how to pass the customized id
 	.controller("PersonDetailController", ['$scope', "PersonFactory", function ($scope, PersonFactory) {
-	    $scope.bla = "bla from controller";
-	    PersonFactory.get({}, function (personFactory) {
-	        $scope.firstname = personFactory.firstName;
-	        $scope.lastname = personFactory.lastName;
+	    PersonFactory.get({ id: 1 }, function (data) {
+	        $scope.firstname = data.firstName;
+	        $scope.lastname = data.lastName;
 	    });
-	}]);
+	}])
+	
+	.controller("PersonListController", ['$scope', "PersonsFactory", function ($scope, PersonsFactory) {
+		PersonsFactory.query({}, function(data) {
+			$scope.persons = data;
+		})
+	}])
+	
+	.controller("HelpController", ['$scope', function ($scope) {
+		$scope.title = 'Help Section';
+	}])
+	;
