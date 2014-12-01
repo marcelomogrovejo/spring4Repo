@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,20 +22,24 @@ public class PersonController {
 	@Autowired
 	private IPersonService personService;
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, 
+            produces = MediaType.APPLICATION_JSON_VALUE)
 	public Person getPersonDetail(@PathVariable long id) {
 		Person p = personService.getPersonDetail(id);
 		return p;
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET, 
+            produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Person> getPersons() {
 		List<Person> persons = personService.getPersons();
 		return persons;
 	}
 
 	//TODO: to test it, make a post uri and put it in the browser
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST, 
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
 	public Person save(@RequestBody Person person) {
 		Person p = personService.saveOrUpdate(person);
 		return p;
@@ -49,7 +54,9 @@ public class PersonController {
 		personService.removePerson(p);
 	}
 	
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, 
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public void updatePerson(@PathVariable long id, @RequestBody Person person) {
     	person.setId(id);
