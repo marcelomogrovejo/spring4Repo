@@ -30,22 +30,17 @@ public class PersistenceJPAConfig {
 	private static final String GET_PROP_START = "";
 	private static final String GET_PROP_END = "}";
 	private static final String MAIL_PROPERTIES_NAME = "";
+	
+	private static final String BASE_URL = GET_PROPFILE + MAIL_PROPERTIES_NAME + GET_PROP_START + "base.url" + GET_PROP_END;
+	private static final String BASE_USER = GET_PROPFILE + MAIL_PROPERTIES_NAME + GET_PROP_START + "base.usuario" + GET_PROP_END;
+	private static final String BASE_PASS = GET_PROPFILE + MAIL_PROPERTIES_NAME + GET_PROP_START + "base.clave" + GET_PROP_END;
+	
+	@Value(BASE_URL) private String baseUrl;
+	@Value(BASE_USER) private String baseUsuario;
+	@Value(BASE_PASS) private String baseClave;
 
-	private static final String BASE_URL = GET_PROPFILE + MAIL_PROPERTIES_NAME
-			+ GET_PROP_START + "base.url" + GET_PROP_END;
-	private static final String BASE_USER = GET_PROPFILE + MAIL_PROPERTIES_NAME
-			+ GET_PROP_START + "base.usuario" + GET_PROP_END;
-	private static final String BASE_PASS = GET_PROPFILE + MAIL_PROPERTIES_NAME
-			+ GET_PROP_START + "base.clave" + GET_PROP_END;
 
-	@Value(BASE_URL)
-	private String baseUrl;
-	@Value(BASE_USER)
-	private String baseUsuario;
-	@Value(BASE_PASS)
-	private String baseClave;
-
-	@Bean
+	@Bean(name="emf")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(restDataSource());

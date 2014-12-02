@@ -5,7 +5,7 @@
 angular.module("myAngular.services", ['ngResource'])
 
 	.factory("PersonFactory", function ($resource) {
-		return $resource("http\://localhost\:8080/Spring4/data/person/:id", {}, {
+		return $resource("http\://localhost\:8080/data/person/:id", {}, {
 			query: {
 				method: 'GET',
 				params: {},
@@ -15,7 +15,7 @@ angular.module("myAngular.services", ['ngResource'])
 	})
 	
 	.factory("PersonsFactory", function ($resource) {
-		return $resource("http\://localhost\:8080/Spring4/data/person", {}, {
+		return $resource("http\://localhost\:8080/data/person", {}, {
 			query: {
 				method: 'GET',
 				param: {},

@@ -40,7 +40,7 @@ public class PersonController {
 	@RequestMapping(value = "/", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person save(@RequestBody Person person) {
+	public Person add(@RequestBody Person person) {
 		Person p = personService.saveOrUpdate(person);
 		return p;
 	}
