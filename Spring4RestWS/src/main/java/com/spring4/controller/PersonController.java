@@ -36,7 +36,6 @@ public class PersonController {
 		return persons;
 	}
 
-	//TODO: to test it, make a post uri and put it in the browser
 	@RequestMapping(value = "/", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -45,7 +44,6 @@ public class PersonController {
 		return p;
 	}
 	
-	//TODO: to test it, make a post uri and put it in the browser
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
 	public void delete(@PathVariable long id) {
