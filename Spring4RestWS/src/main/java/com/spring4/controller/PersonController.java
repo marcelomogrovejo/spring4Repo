@@ -36,7 +36,7 @@ public class PersonController {
 		return persons;
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST, 
+	@RequestMapping(value = "", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 	public Person add(@RequestBody Person person) {

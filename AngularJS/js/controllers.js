@@ -35,4 +35,27 @@ angular.module("myAngular.controllers", [])
 	.controller("HelpController", ['$scope', function ($scope) {
 		$scope.title = 'Help Section';
 	}])
+	
+	.controller('UpdatePersonController', ['$scope', "PersonSaveFactory", function($scope, PersonSaveFactory) {
+		
+		console.log("ENTRA");
+		
+		$scope.master = {};
+		
+		$scope.update = function(person) {
+//			$scope.master = angular.copy(person);
+			
+			PersonSaveFactory.savePerson( person ).then(function(data) {
+				console.log(data.firstName);
+			});
+
+		};
+		
+		$scope.reset = function() {
+			$scope.person = angular.copy($scope.master);
+		};
+		
+		$scope.reset();
+	}]);
+
 	;

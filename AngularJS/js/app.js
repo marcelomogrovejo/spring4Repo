@@ -21,6 +21,10 @@ angular.module("myAngular", ["ngRoute", "myAngular.services", "myAngular.control
         		templateUrl: "template/help.html",
         		controller: "HelpController" 
         	})
+        	.when('/update', {
+        		templateUrl: "template/form.html",
+        		controller: "UpdatePersonController"
+        	})
         	.otherwise({ 
         		redirectTo: '/home' 
         	});

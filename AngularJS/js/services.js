@@ -6,7 +6,7 @@ var serverPort = "8090";
 
 angular.module("myAngular.services", ['ngResource'])
 
-	.factory("PersonFactory", function ($resource) {
+	.factory("PersonDetailFactory", function ($resource) {
 		return $resource(serverUrl + "\:" + serverPort + "/data/person/:id", {}, {
 			query: {
 				method: 'GET',
@@ -16,7 +16,7 @@ angular.module("myAngular.services", ['ngResource'])
 		});
 	})
 	
-	.factory("PersonsFactory", function ($resource) {
+	.factory("PersonListFactory", function ($resource) {
 		return $resource(serverUrl + "\:" + serverPort + "/data/person", {}, {
 			query: {
 				method: 'GET',
@@ -24,4 +24,19 @@ angular.module("myAngular.services", ['ngResource'])
 				isArray: true
 			}
 		});
+	})
+	
+	.factory("PersonSaveFactory", function ($q, $resource) {
+		return {
+			
+			savePerson: function (person) {
+				var deferred = $q.defer();
+				$resource(serverUrl + "\:" + serverPort + "/data/person")
+					.save(person, function (data) {
+						deferred.resolve(data);
+					});
+				return deferred.promise;
+			}
+			
+		} 	
 	});
